@@ -212,6 +212,30 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Terminal mode window navigation
+local terminal_bufnr = nil
+local terminal_winnr = nil
+
+local function toggle_terminal()
+  if terminal_winnr and vim.api.nvim_win_is_valid(terminal_winnr) then
+    vim.api.nvim_win_close(terminal_winnr, false)
+    terminal_winnr = nil
+  else
+    vim.cmd 'split'
+    if terminal_bufnr and vim.api.nvim_buf_is_valid(terminal_bufnr) then
+      vim.api.nvim_win_set_buf(0, terminal_bufnr)
+    else
+      vim.cmd 'terminal'
+      terminal_bufnr = vim.api.nvim_get_current_buf()
+    end
+    terminal_winnr = vim.api.nvim_get_current_win()
+    vim.cmd 'startinsert'
+  end
+end
+
+vim.keymap.set('n', '<C-/>', toggle_terminal, { desc = 'Toggle terminal' })
+vim.keymap.set('t', '<C-/>', toggle_terminal, { desc = 'Toggle terminal' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
