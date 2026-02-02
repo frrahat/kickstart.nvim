@@ -970,6 +970,41 @@ require('lazy').setup({
     },
   },
 
+  {
+    'petertriho/nvim-scrollbar',
+    event = 'VeryLazy',
+    config = function()
+      require('scrollbar').setup {
+        handlers = {
+          gitsigns = true,
+        },
+      }
+    end,
+  },
+
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = false,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+    config = function() require('telescope').load_extension 'lazygit' end,
+  },
+
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
