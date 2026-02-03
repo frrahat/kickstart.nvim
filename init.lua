@@ -212,6 +212,16 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.api.nvim_create_autocmd('TermOpen', {
+  -- pattern = '*:claude',
+  callback = function()
+    vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w><C-h>', { buffer = true, desc = 'Move to left window from Terminal' })
+    vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w><C-l>', { buffer = true, desc = 'Move to right window from Terminal' })
+    vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w><C-j>', { buffer = true, desc = 'Move to lower window from Terminal' })
+    vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w><C-k>', { buffer = true, desc = 'Move to upper window from Terminal' })
+  end,
+})
+
 -- Terminal mode window navigation
 local terminal_bufnr = nil
 local terminal_winnr = nil
