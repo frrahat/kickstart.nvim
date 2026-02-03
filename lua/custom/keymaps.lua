@@ -29,3 +29,5 @@ end
 
 vim.keymap.set('n', '<C-/>', toggle_terminal, { desc = 'Toggle terminal' })
 vim.keymap.set('t', '<C-/>', toggle_terminal, { desc = 'Toggle terminal' })
+
+vim.keymap.set('n', '<leader>so', function() require('telescope.builtin').oldfiles { cwd_only = true } end, { desc = '[S]earch [O]ldfiles (cwd only)' })
