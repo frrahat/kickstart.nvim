@@ -422,12 +422,18 @@ require('lazy').setup({
 
           -- Jump to the implementation of the word under your cursor.
           -- Useful when your language has ways of declaring types without an actual implementation.
-          vim.keymap.set('n', 'gri', builtin.lsp_implementations, { buffer = buf, desc = '[G]oto [I]mplementation' })
+          local goto_impl = builtin.lsp_implementations
+          local goto_impl_opts = { buffer = buf, desc = '[G]oto [I]mplementation' }
+          vim.keymap.set('n', 'gri', goto_impl, goto_impl_opts)
+          vim.keymap.set('n', 'gi', goto_impl, goto_impl_opts)
 
           -- Jump to the definition of the word under your cursor.
           -- This is where a variable was first declared, or where a function is defined, etc.
           -- To jump back, press <C-t>.
-          vim.keymap.set('n', 'grd', builtin.lsp_definitions, { buffer = buf, desc = '[G]oto [D]efinition' })
+          local goto_def = builtin.lsp_definitions
+          local goto_def_opts = { buffer = buf, desc = '[G]oto [D]efinition' }
+          vim.keymap.set('n', 'grd', goto_def, goto_def_opts)
+          vim.keymap.set('n', 'gd', goto_def, goto_def_opts)
 
           -- Fuzzy find all the symbols in your current document.
           -- Symbols are things like variables, functions, types, etc.
