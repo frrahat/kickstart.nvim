@@ -916,7 +916,7 @@ require('lazy').setup({
 
       -- Send/Focus Behavior
       -- When true, successful sends will focus the Claude terminal if already connected
-      focus_after_send = false,
+      focus_after_send = true,
 
       -- Selection Tracking
       track_selection = true,
@@ -945,7 +945,7 @@ require('lazy').setup({
         auto_close_on_accept = true,
         vertical_split = true,
         open_in_current_tab = true,
-        keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens (including floating terminals)
+        keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens (including floating terminals)
       },
     },
     keys = {
