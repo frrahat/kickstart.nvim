@@ -19,6 +19,7 @@ return {
         mappings = {
           ['<leader>e'] = 'close_window',
           ['[c'] = 'prev_git_modified',
+          [']c'] = 'next_git_modified',
         },
       },
     },
